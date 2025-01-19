@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles1.css">
+    <title>...วันนี้วันอารายยย💗💗💗</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
+    <style>
+        /* ใช้ฟอนต์ Itim สำหรับความน่ารัก */
+        * {
+            font-family: 'Itim', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* พื้นหลัง */
+        body {
+            background-color: #ffebf0; /* พื้นหลังสีชมพูอ่อน */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* ปรับขนาดปุ่ม */
+        .btn-scroll {
+            background-color: #ff66b2; /* สีชมพูเข้ม */
+            color: white;
+            font-size: 18px;
+            padding: 15px 30px;
+            border-radius: 50px;
+            cursor: pointer;
+            border: none;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+        }
+
+        /* สีปุ่มเมื่อ hover */
+        .btn-scroll:hover {
+            background-color: #ff99cc; /* สีชมพูอ่อน */
+        }
+
+        /* จัดรูปแบบข้อความ */
+        h1, h2 {
+            text-align: center;
+            color: #ff6fa7; /* สีชมพูสด */
+        }
+
+        h1 {
+            font-size: 48px;
+        }
+
+        h2 {
+            font-size: 36px;
+        }
+
+        .container img {
+            width: 100%;
+            max-width: 300px; /* จำกัดขนาดสูงสุด */
+            border-radius: 40px; /* ขอบรูปโค้งมน */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            animation: bounceIn 2s ease-out;
+        }
+
+        /* แกลเลอรี่รูปภาพ */
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* รูปภาพแสดงใน 4 คอลัมน์ */
+            gap: 10px;
+            padding: 20px;
+            justify-items: center;
+            margin-top: 50px;
+        }
+
+        .image-gallery img {
+            width: 100%;
+            max-width: 100px;
+            border-radius: 10px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Media Query สำหรับ iPhone 11 */
+        @media screen and (max-width: 375px) and (max-height: 812px) {
+            h1 {
+                font-size: 32px;
+            }
+
+            h2 {
+                font-size: 24px;
+            }
+
+            .image-gallery {
+                grid-template-columns: repeat(2, 1fr); /* รูปภาพแสดงใน 2 คอลัมน์ */
+            }
+
+            .container img {
+                max-width: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <br>
+    <div class="content">
+        <h1 >วันวาเลนไทน์</h1>
+        <h2 >14.02.68</h2>
+        <h2 >ปีนี้</h2>
+       
+        <br>
+        <div class="container">
+            <img src="/img/222.jpg" alt="Valentine Image">
+        </div>
+        <!-- ปุ่ม "ดูภาพ" -->
+        <center><button class="btn-scroll" onclick="smoothScroll()">ดูภาพ</button>
+    </div>
+
+    <div class="container1">
+        <h1>รวมรูปที่ชอบ ที่ถ่ายด้วยกัน</h1>
+    </div>
+
+    <div class="image-gallery">
+        <img src="img/img (1).jpg" alt="ภาพ 1">
+        <img src="img/img (2).jpg" alt="ภาพ 2">
+        <img src="img/img (3).jpg" alt="ภาพ 3">
+        <img src="img/img (4).jpg" alt="ภาพ 4">
+        <img src="img/img (5).jpg" alt="ภาพ 5">
+        <img src="img/img (6).jpg" alt="ภาพ 6">
+        <img src="img/img (7).jpg" alt="ภาพ 7">
+        <img src="img/img (8).jpg" alt="ภาพ 8">
+    </div>
+    
+    <div class="button-container">
+        <!-- ปุ่มที่ผู้ใช้กด -->
+        <button id="showMessageBtn">ลองกดดู</button>
+    </div>
+
+    <!-- ข้อความที่เป็น Popup -->
+    <div class="hidden-message" id="hiddenMessage">
+        รักบี๋นะ😘😘😘
+    </div>
+
+    <!-- เอฟเฟ็กต์พลุ -->
+    <div class="fireworks" id="fireworks"></div>
+    <script src="script.js"></script>
+    <audio autoplay loop>
+        <source src="ARMOR Fall in love Visualizer.mp3" type="audio/mpeg">
+      </audio>
+      
+       
+    </audio>
+    <script>
+        // ฟังก์ชันเลื่อนหน้าเว็บอย่างช้าๆ
+        function smoothScroll() {
+            let distance = 0;
+            const targetElement = document.querySelector('.image-gallery'); // เป้าหมายที่ต้องการเลื่อนไป
+            const intervalTime = 600; // เวลาที่ใช้ในการเลื่อนแต่ละขั้นตอน (20ms)
+            const scrollAmount = 30; // ระยะทางที่จะเลื่อนแต่ละครั้ง (10px)
+
+            // ฟังก์ชันนี้จะถูกเรียกทุกๆ 20ms และเลื่อนหน้าจอลงทีละ 10px
+            const interval = setInterval(() => {
+                // เลื่อนหน้าจอลงทีละนิด
+                window.scrollBy(0, scrollAmount);
+                distance += scrollAmount;
+
+                // เมื่อเลื่อนจนถึงตำแหน่งที่ต้องการ หรือเกินจากตำแหน่งนั้นให้หยุดการเลื่อน
+                if (distance >= targetElement.offsetTop) {
+                    clearInterval(interval);
+                }
+            }, intervalTime);
+        }
+    </script>
+</body>
+</html>
